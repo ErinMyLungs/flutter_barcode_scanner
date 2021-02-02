@@ -166,24 +166,24 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
         canvas.drawRoundRect(rect, (float) cornerRadius, (float) cornerRadius, eraser);
 
         // draw horizontal line
-        Paint line = new Paint();
-        line.setColor(lineColor);
-        line.setStrokeWidth(Float.valueOf(lineWidth));
-
-        // draw the line to product animation
-        if (endY >= top + AppUtil.dpToPx(getContext(), rectHeight) + frames) {
-            revAnimation = true;
-        } else if (endY == top + frames) {
-            revAnimation = false;
-        }
-
-        // check if the line has reached to bottom
-        if (revAnimation) {
-            endY -= frames;
-        } else {
-            endY += frames;
-        }
-        canvas.drawLine(left, endY, left + AppUtil.dpToPx(getContext(), rectWidth), endY, line);
+//        Paint line = new Paint();
+//        line.setColor(lineColor);
+//        line.setStrokeWidth(Float.valueOf(lineWidth));
+//
+////        // draw the line to product animation
+////        if (endY >= top + AppUtil.dpToPx(getContext(), rectHeight) + frames) {
+////            revAnimation = true;
+////        } else if (endY == top + frames) {
+////            revAnimation = false;
+////        }
+////
+////        // check if the line has reached to bottom
+////        if (revAnimation) {
+////            endY -= frames;
+////        } else {
+////            endY += frames;
+////        }
+////        canvas.drawLine(left, endY, left + AppUtil.dpToPx(getContext(), rectWidth), endY, line);
         invalidate();
     }
 }

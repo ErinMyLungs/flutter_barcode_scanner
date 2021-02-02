@@ -82,7 +82,6 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
 
-    private ImageView imgViewBarcodeCaptureUseFlash;
 
     public static int SCAN_MODE = SCAN_MODE_ENUM.QR.ordinal();
 
@@ -108,19 +107,19 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         try {
             setContentView(R.layout.barcode_capture);
 
-            String buttonText = "";
-            try {
-                buttonText = (String) getIntent().getStringExtra("cancelButtonText");
-            } catch (Exception e) {
-                buttonText = "Cancel";
-                Log.e("BCActivity:onCreate()", "onCreate: " + e.getLocalizedMessage());
-            }
-            imgViewBarcodeCaptureUseFlash = findViewById(R.id.imgViewBarcodeCaptureUseFlash);
-            Button btnBarcodeCaptureCancel = findViewById(R.id.btnBarcodeCaptureCancel);
-            btnBarcodeCaptureCancel.setText(buttonText);
-            btnBarcodeCaptureCancel.setOnClickListener(this);
-            imgViewBarcodeCaptureUseFlash.setOnClickListener(this);
-            imgViewBarcodeCaptureUseFlash.setVisibility(FlutterBarcodeScannerPlugin.isShowFlashIcon ? View.VISIBLE : View.GONE);
+//            String buttonText = "";
+//            try {
+//                buttonText = (String) getIntent().getStringExtra("cancelButtonText");
+//            } catch (Exception e) {
+//                buttonText = "Cancel";
+//                Log.e("BCActivity:onCreate()", "onCreate: " + e.getLocalizedMessage());
+//            }
+//            imgViewBarcodeCaptureUseFlash = findViewById(R.id.imgViewBarcodeCaptureUseFlash);
+//            Button btnBarcodeCaptureCancel = findViewById(R.id.btnBarcodeCaptureCancel);
+//            btnBarcodeCaptureCancel.setText(buttonText);
+//            btnBarcodeCaptureCancel.setOnClickListener(this);
+//            imgViewBarcodeCaptureUseFlash.setOnClickListener(this);
+//            imgViewBarcodeCaptureUseFlash.setVisibility(FlutterBarcodeScannerPlugin.isShowFlashIcon ? View.VISIBLE : View.GONE);
             mPreview = findViewById(R.id.preview);
             mGraphicOverlay = findViewById(R.id.graphicOverlay);
 
@@ -384,27 +383,28 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     @Override
     public void onClick(View v) {
         int i = v.getId();
-        if (i == R.id.imgViewBarcodeCaptureUseFlash &&
-                getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
-            try {
-                if (flashStatus == USE_FLASH.OFF.ordinal()) {
-                    flashStatus = USE_FLASH.ON.ordinal();
-                    imgViewBarcodeCaptureUseFlash.setImageResource(R.drawable.ic_barcode_flash_on);
-                    turnOnOffFlashLight(true);
-                } else {
-                    flashStatus = USE_FLASH.OFF.ordinal();
-                    imgViewBarcodeCaptureUseFlash.setImageResource(R.drawable.ic_barcode_flash_off);
-                    turnOnOffFlashLight(false);
-                }
-            } catch (Exception e) {
-                Toast.makeText(this, "Unable to turn on flash", Toast.LENGTH_SHORT).show();
-                Log.e("BarcodeCaptureActivity", "FlashOnFailure: " + e.getLocalizedMessage());
-            }
-        } else if (i == R.id.btnBarcodeCaptureCancel) {
-            Barcode barcode = new Barcode();
-            barcode.rawValue = "-1";
-            barcode.displayValue = "-1";
-            FlutterBarcodeScannerPlugin.onBarcodeScanReceiver(barcode);
+//        if (i == R.id.imgViewBarcodeCaptureUseFlash &&
+//                getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
+//            try {
+//                if (flashStatus == USE_FLASH.OFF.ordinal()) {
+//                    flashStatus = USE_FLASH.ON.ordinal();
+//                    imgViewBarcodeCaptureUseFlash.setImageResource(R.drawable.ic_barcode_flash_on);
+//                    turnOnOffFlashLight(true);
+//                } else {
+//                    flashStatus = USE_FLASH.OFF.ordinal();
+//                    imgViewBarcodeCaptureUseFlash.setImageResource(R.drawable.ic_barcode_flash_off);
+//                    turnOnOffFlashLight(false);
+//                }
+//            } catch (Exception e) {
+//                Toast.makeText(this, "Unable to turn on flash", Toast.LENGTH_SHORT).show();
+//                Log.e("BarcodeCaptureActivity", "FlashOnFailure: " + e.getLocalizedMessage());
+//            }
+//        } else
+            if (i == R.id.btnBarcodeCaptureCancel) {
+//            Barcode barcode = new Barcode();
+//            barcode.rawValue = "-1";
+//            barcode.displayValue = "-1";
+//            FlutterBarcodeScannerPlugin.onBarcodeScanReceiver(barcode);
             finish();
         }
     }
