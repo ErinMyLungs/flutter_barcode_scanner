@@ -166,7 +166,7 @@ class BarcodeScannerViewController: UIViewController {
     private var scanlineRect = CGRect.zero
     private var scanlineStartY: CGFloat = 0
     private var scanlineStopY: CGFloat = 0
-    private var topBottomMargin: CGFloat = 80
+    private var topBottomMargin: CGFloat = 0
     private var scanLine: UIView = UIView()
     var screenSize = UIScreen.main.bounds
     private var isOrientationPortrait = true
@@ -337,7 +337,7 @@ class BarcodeScannerViewController: UIViewController {
             qrCodeFrameView.setNeedsUpdateConstraints()
             self.view.bringSubviewToFront(cancelButton)
         }
-        setConstraintsForControls()
+//        setConstraintsForControls()
 //        self.drawLine()
         processCompletionCallback()
     }
