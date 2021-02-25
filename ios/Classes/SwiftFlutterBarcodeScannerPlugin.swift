@@ -198,6 +198,7 @@ class BarcodeScannerViewController: UIViewController {
         flashButton.setImage(UIImage(named: "ic_flash_off", in: Bundle(identifier: "org.cocoapods.flutter-barcode-scanner"), compatibleWith: nil),for:.normal)
         
         flashButton.addTarget(self, action: #selector(BarcodeScannerViewController.flashButtonClicked), for: .touchUpInside)
+        flashButton.isHidden = true
         return flashButton
     }()
     
@@ -208,6 +209,7 @@ class BarcodeScannerViewController: UIViewController {
         view.setTitle(SwiftFlutterBarcodeScannerPlugin.cancelButtonText, for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addTarget(self, action: #selector(BarcodeScannerViewController.cancelButtonClicked), for: .touchUpInside)
+        view.isHidden = true
         return view
     }()
     
@@ -319,7 +321,7 @@ class BarcodeScannerViewController: UIViewController {
         qrCodeFrameView = UIView()
         
         qrCodeFrameView!.frame = CGRect(x: 0, y: 0, width: self.isOrientationPortrait ? (screenSize.width * 0.8) : (screenSize.height * 0.8), height: screenHeight)
-        
+
         
         if let qrCodeFrameView = qrCodeFrameView {
             self.view.addSubview(qrCodeFrameView)
@@ -336,7 +338,7 @@ class BarcodeScannerViewController: UIViewController {
             self.view.bringSubviewToFront(cancelButton)
         }
         setConstraintsForControls()
-        self.drawLine()
+//        self.drawLine()
         processCompletionCallback()
     }
     
@@ -441,7 +443,7 @@ class BarcodeScannerViewController: UIViewController {
     private func moveVertically() {
         scanLine.frame  = scanlineRect
         scanLine.center = CGPoint(x: scanLine.center.x, y: scanlineStartY)
-        scanLine.isHidden = false
+        scanLine.isHidden = true
         weak var weakSelf = scanLine
         UIView.animate(withDuration: 2.0, delay: 0.0, options: [.repeat, .autoreverse, .beginFromCurrentState], animations: {() -> Void in
             weakSelf!.center = CGPoint(x: weakSelf!.center.x, y: self.scanlineStopY)
